@@ -2,17 +2,17 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    static Scanner sc = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
     static boolean on = true;
     public static void main(String[] args) {
-        byte age = readByte("Please enter your age: ");
-        int number = readInt("Enter your ID number: ");
-        float height = readFloat("Enter your height in meters: ");
-        double distance = readDouble("Kilometers traveled: ");
+        byte numberByte = readByte("Please enter a byte: ");
+        int number = readInt("Enter your number from -2,147,483,648 to 2,147,483,647: ");
+        float numberFloat = readFloat("Enter float number: ");
+        double doubleNumber = readDouble("Enter double number: ");
 
-        System.out.println("Your age is: " + age + " with ID number: " + number +
-                " with a height of: " + height + " meters" + " and kilometers traveled: " +
-                distance + " km");
+        System.out.println("byte: " + numberByte + "\nnumber: " + number +
+                "\nFoat: " + numberFloat + "\ndouble: " +
+                doubleNumber);
         while (on){
             try {
                 char letter = readChar("Enter a character: ");
@@ -37,19 +37,24 @@ public class Main {
                 System.out.println("Incorrect format");
             }
         }
+        scanner.close();
     }
+
 
     public static byte readByte(String message) {
         byte smallNumber = 0;
+
         while (true) {
             try {
                 System.out.println(message);
-                smallNumber = sc.nextByte();
+                smallNumber = scanner.nextByte();
                 return smallNumber;
             } catch (InputMismatchException e) {
                 System.out.println("Format error. Enter the number correctly");
+                scanner.nextLine();
             }
         }
+
     }
 
     public static int readInt(String message){
@@ -57,10 +62,11 @@ public class Main {
         while (true){
             try {
                 System.out.println(message);
-                number = sc.nextInt();
+                number = scanner.nextInt();
                 return number;
             }catch (InputMismatchException e){
                 System.out.println("Format error. Enter the number correctly");
+                scanner.nextLine();
             }
         }
     }
@@ -70,31 +76,36 @@ public class Main {
         while (true){
             try {
                 System.out.println(message);
-                decimal = sc.nextFloat();
+                decimal = scanner.nextFloat();
                 return decimal;
             }catch (InputMismatchException e){
                 System.out.println("Format error. Enter the number correctly");
+                scanner.nextLine();
             }
         }
     }
 
     public static double readDouble(String message){
         double decimal = 0;
+        boolean valid = false;
         while (true){
             try {
                 System.out.println(message);
-                decimal = sc.nextDouble();
+                decimal = scanner.nextDouble();
+                scanner.nextLine();
                 return decimal;
             }catch (InputMismatchException e){
                 System.out.println("Format error. Enter the number correctly");
+                scanner.nextLine();
             }
+
         }
     }
 
     public static char readChar(String message) throws InputException {
         String letter = "";
         System.out.println(message);
-        letter = sc.nextLine();
+        letter = scanner.nextLine();
         if (letter.length() == 1) {
             System.out.println("Very good [" + letter + "] is a character");
             on = false;
@@ -107,8 +118,8 @@ public class Main {
     public static String readString(String message) throws InputException {
         String text = "";
         System.out.println(message);
-        text = sc.nextLine();
-        if (text.contains(" ")){
+        text = scanner.nextLine();
+        if (text.contains(" ") || text.contains("\t")){
             throw new InputException();
         } else {
             System.out.println("Thank you [" + text + "] is a word.");
@@ -121,7 +132,7 @@ public class Main {
         boolean yesOrNo = true;
         String sOrN = "";
         System.out.println(message);
-        sOrN = sc.nextLine();
+        sOrN = scanner.nextLine();
 
         if (sOrN.toLowerCase().equals("y")){
             on = false;
@@ -135,7 +146,6 @@ public class Main {
         }
     }
 }
-
 
 
 
