@@ -1,5 +1,22 @@
 01.02-Exceptions-Nivel2
 
+Create a class called "Input". This class should be used to control the different exceptions that can appear in Java when entering data by keyboard using the Scanner class.
+The first thing to do is instantiate an object of the Scanner class and from there, create static methods to read the different types of data from the keyboard.
+
+Important:
+It is important that if an exception occurs in any method, we handle it and ask the user for the data again until it is entered correctly. For example: If they enter a float with a dot instead of a comma, it should display "Format error". Until the user enters a well-formed float, they should continue asking for the data.
+All methods receive a String with the message that you want to show the user, for example: "Enter your age", and return the appropriate data entered by the user in each method, for example: a byte with the user's age.
+Methods to implement catching the exception of the "InputMismatchException" class:
+public static byte readByte(String message);
+public static int readInt(String message);
+public static float readFloat(String message);
+public static double readDouble(String message);
+
+Methods to implement catching a custom exception of the Exception class:
+public static char readChar(String message);
+public static String readString(String message);
+public static boolean readSiNo(String message), if the user enters “s”, returns “true”, if the user enters “n”, returns “false”.
+
 This Java project demonstrates how to validate user input for different data types, such as `byte`, `int`, `float`,
 `double`, `char`, `String`, and `boolean`. It ensures that the user enters valid data and handles exceptions gracefully.
 
